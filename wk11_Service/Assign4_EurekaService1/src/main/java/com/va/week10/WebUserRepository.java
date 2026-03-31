@@ -1,9 +1,9 @@
 package com.va.week10;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface WebUserRepository extends MongoRepository<WebUser, String> {
+public interface WebUserRepository extends JpaRepository<WebUser, String> {
 
 }

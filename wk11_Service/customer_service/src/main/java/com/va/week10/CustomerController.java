@@ -18,16 +18,15 @@ public class CustomerController {
     @GetMapping("/customer")
     public String showForm(Model model) {
         model.addAttribute("customer", new Customer());
-
-        List<Customer> customers = customerService.getAllCustomers();
-        model.addAttribute("customers", customers);
-
+        model.addAttribute("customers", customerService.getAllCustomers());
         return "customer";
     }
 
     @PostMapping("/customer")
-    public String insertCustomer(@ModelAttribute Customer customer) {
+    public String insertCustomer(@ModelAttribute Customer customer, Model model) {
         customerService.insertCustomer(customer);
-        return "redirect:/customer";
+        model.addAttribute("customer", new Customer());
+        model.addAttribute("customers", customerService.getAllCustomers());
+        return "customer";
     }
 }

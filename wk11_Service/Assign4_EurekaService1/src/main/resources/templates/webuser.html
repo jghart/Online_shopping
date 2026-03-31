@@ -100,7 +100,7 @@
 
     <h2>Stored Users</h2>
 
-    <table th:if="${!users.isEmpty()}">
+    <table th:if="${not #lists.isEmpty(users)}">
         <thead>
             <tr>
                 <th>ID</th>
@@ -119,7 +119,7 @@
         </tbody>
     </table>
 
-    <p class="no-data" th:if="${users.isEmpty()}">No users found. Add one above!</p>
+    <p class="no-data" th:if="${#lists.isEmpty(users)}">No users found. Add one above!</p>
 
 </body>
 </html>

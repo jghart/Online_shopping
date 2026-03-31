@@ -19,17 +19,16 @@ public class WebUserController {
     public String showForm(Model model) {
         model.addAttribute("webUser", new WebUser());
         model.addAttribute("states", UserState.values());
-
-        List<WebUser> users = webUserService.getAllUsers();
-        model.addAttribute("users", users);
-
+        model.addAttribute("users", webUserService.getAllUsers());
         return "webuser";
     }
 
-
     @PostMapping("/webuser")
-    public String insertUser(@ModelAttribute WebUser webUser) {
+    public String saveUser(@ModelAttribute WebUser webUser, Model model) {
         webUserService.insertUser(webUser);
-        return "redirect:/webuser";
+        model.addAttribute("webUser", new WebUser());
+        model.addAttribute("states", UserState.values());
+        model.addAttribute("users", webUserService.getAllUsers());
+        return "webuser";
     }
 }
