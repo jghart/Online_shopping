@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Customer Registration</title>
@@ -11,25 +12,30 @@
             padding: 0 20px;
             background-color: #f5f5f5;
         }
+
         h2 {
             color: #333;
             border-bottom: 2px solid #28a745;
             padding-bottom: 8px;
         }
+
         form {
             background: #fff;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             margin-bottom: 30px;
         }
+
         label {
             display: block;
             margin-top: 12px;
             font-weight: bold;
             color: #555;
         }
-        input[type="text"], input[type="email"] {
+
+        input[type="text"],
+        input[type="email"] {
             width: 100%;
             padding: 8px 12px;
             margin-top: 4px;
@@ -37,6 +43,7 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
+
         button {
             margin-top: 20px;
             padding: 10px 24px;
@@ -47,29 +54,36 @@
             cursor: pointer;
             font-size: 16px;
         }
+
         button:hover {
             background-color: #1e7e34;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             background: #fff;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        th, td {
+
+        th,
+        td {
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #eee;
         }
+
         th {
             background-color: #28a745;
             color: #fff;
         }
+
         tr:hover {
             background-color: #f1fff3;
         }
+
         .no-data {
             text-align: center;
             color: #888;
@@ -77,6 +91,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <h2>Register Customer</h2>
@@ -84,7 +99,7 @@
     <form th:action="@{/customer}" th:object="${customer}" method="post">
 
         <label for="customerId">Customer ID (WebUser ID):</label>
-        <input type="text" id="customerId" th:field="*{customerId}" placeholder="Enter WebUser MongoDB ID" required />
+        <input type="text" id="customerId" th:field="*{customerId}" placeholder="Enter WebUser MySQL ID" required />
 
         <label for="address">Address:</label>
         <input type="text" id="address" th:field="*{address}" placeholder="Enter address" required />
@@ -124,4 +139,5 @@
     <p class="no-data" th:if="${#lists.isEmpty(customers)}">No customers found. Add one above!</p>
 
 </body>
+
 </html>
