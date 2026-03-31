@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Web User Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background-color: #f5f5f5;
+        }
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 8px;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"], input[type="password"], select {
+            width: 100%;
+            padding: 8px 12px;
+            margin-top: 4px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 24px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+        tr:hover {
+            background-color: #f1f7ff;
+        }
+        .no-data {
+            text-align: center;
+            color: #888;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Register Web User</h2>
+
+    <form th:action="@{/webuser}" th:object="${webUser}" method="post">
+
+        <label for="loginId">Login ID (Username):</label>
+        <input type="text" id="loginId" th:field="*{loginId}" placeholder="Enter login ID" required />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" th:field="*{password}" placeholder="Enter password" required />
+
+        <label for="state">State of User:</label>
+        <select id="state" th:field="*{state}" required>
+            <option value="">-- Select State --</option>
+            <option th:each="s : ${states}" th:value="${s}" th:text="${s}">STATE</option>
+        </select>
+
+        <button type="submit">Save User</button>
+    </form>
+
+    <h2>Stored Users</h2>
+
+    <table th:if="${!users.isEmpty()}">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Login ID</th>
+                <th>Password</th>
+                <th>State</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}">—</td>
+                <td th:text="${user.loginId}">—</td>
+                <td th:text="${user.password}">—</td>
+                <td th:text="${user.state}">—</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p class="no-data" th:if="${users.isEmpty()}">No users found. Add one above!</p>
+
+</body>
+</html>
